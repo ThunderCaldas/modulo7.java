@@ -1,26 +1,34 @@
 public class ContaSalario extends Conta{
     private double limiteSaque;
 
-    public ContaSalario(double limiteSaque){
-        this.limiteSaque =  limiteSaque;
-        }
+    public ContaSalario(int numero, int  agencia, String banco, double saldo, double limiteSaque){
+        super (numero, agencia, banco, saldo);
+        this.limiteSaque = limiteSaque;
+    }
 
     @Override
     public double sacar(double valor) {
-        if (limiteSaque <= 4) {
-            System.out.println("Realizando saque: R$" + valor);
+
+        System.out.println("Realizando saque " + valor);
+        if (limiteSaque > 0) {
+            setSaldo(getSaldo() - valor);
+            limiteSaque--;
             return valor;
-        } else {
+        }else {
             System.out.println("Quantidade de saques ultrapassado");
+
         }
-        return 0.0;
+        return 0;
     }
 
-    public double depositar(double valor){
-        System.out.println("Depositando: R$" + valor);
-        setSaldo(getSaldo() + valor);
-        System.out.println("Saldo atual: R$" + getSaldo());
+        @Override
+    public double depositar(double valor) {
+        System.out.println("Depositando: " + valor );
+        setSaldo(getSaldo()+valor);
+        System.out.println("saldo atual: " + getSaldo());
         return valor;
-    }
+        }
+
+
 
 }
