@@ -1,27 +1,32 @@
 public class ContaPoupanca extends Conta{
-    private double valorPoupanca;
+    private double taxaPoupanca;
+    private int diaPoupanca;
 
-    public double valorPoupanca(double valorPoupanca) {
-        this.valorPoupanca = valorPoupanca;
-        return valorPoupanca;
+
+    public ContaPoupanca(int numero, int agencia, String banco, double saldo, double taxaPoupanca, int diaPoupanca) {
+        super(numero, agencia, banco, saldo);
+        this.taxaPoupanca = taxaPoupanca;
+        this.diaPoupanca = diaPoupanca;
     }
 
 
-    @Override
-    public double sacar(double valor) {
-        System.out.println("Valor acumulado: R$" + valorPoupanca );
-        System.out.println("Sacar: R$" + valor);
+  public double sacar(double valor){
+      System.out.println("Sacando: " + valor);        
         setSaldo(getSaldo() - valor);
-        System.out.println("Saldo Atual: R$" + (valorPoupanca + getSaldo()));
-        return valor;
-    }
+      System.out.println("Valor restante: " + getSaldo());
+      return valor;
+        }
 
     @Override
     public double depositar(double valor) {
-        System.out.println("Depositar: R$" + valor);
-        setSaldo(getSaldo() + valor);
-        System.out.println("Salto Atual: R$" + (valorPoupanca + getSaldo()));
+        System.out.println("Depositando: " + valor);
+        if(diaPoupanca >= 20){
+            setSaldo((getSaldo() + valor) * taxaPoupanca);
+            System.out.println("Total de rendimento na poupança: " + getSaldo() );
+        }else{
+            setSaldo(getSaldo()+valor);
+            System.out.println("Valor depositado sem rendimento:" + getSaldo());
+        }
         return valor;
-
     }
 }
