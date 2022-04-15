@@ -1,42 +1,30 @@
-public class ContaCorrente extends Conta {
-    private final double valorInicialChequeEspecial;
-    private double valorChequeEspecial;
-    private Math Match;
+public class ContaCorrente extends Conta{
+    private double chequeEspecial;
 
-    public ContaCorrente(double valorInicialChequeEspecial) {
-        this.valorInicialChequeEspecial = valorInicialChequeEspecial;
+    public  ContaCorrente(int numero, int agencia, String banco, double saldo,double chequeEspecial) {
+        super (numero, agencia, banco, saldo);
+        this.chequeEspecial = chequeEspecial;
     }
 
+    @Override
     public double sacar(double valor) {
         System.out.println("Sacando: " + valor);
-        if (valor <= (getSaldo() + valorChequeEspecial)) {
+        if(valor <= getSaldo()+chequeEspecial && getSaldo()+chequeEspecial - valor >0) {
             setSaldo(getSaldo() - valor);
-            System.out.println("Saldo atual: " + getSaldo());
-
-            if (getSaldo() < 0) {
-                System.out.println("Valor restante do cheque especial: " + getvalorChequeEspecial());
-            }
-            return valor;
-        } else {
-            System.out.println("Cheque especial indisponível para esse saque.");
+            System.out.println("Operação concluída:");
+            System.out.println("Saldo restante com cheque especial:" + getSaldo());
+        }else{
+            System.out.println("Operação cancelada");
+            System.out.println("Saldo restante com cheque especial:" + getSaldo());
         }
-        return 0.0;
+      return valor;
     }
 
+    @Override
     public double depositar(double valor) {
         System.out.println("Depositando: " + valor);
         setSaldo(getSaldo() + valor);
-        System.out.println("Saldo atual: " + getSaldo());
-
+        System.out.println("Seu saldo atualizado: " + getSaldo());
         return valor;
     }
-
-    private double getvalorChequeEspecial() {
-        double valorChequeEspecial = 100;
-        if (getSaldo() < 0)
-            return valorChequeEspecial - Match.abs(getSaldo());
-        else
-            return valorChequeEspecial;
-
-    }
-    }
+}
