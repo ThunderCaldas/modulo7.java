@@ -2,7 +2,6 @@ public class ContaPoupanca extends Conta{
     private double taxaPoupanca;
     private int diaPoupanca;
 
-
     public ContaPoupanca(int numero, int agencia, String banco, double saldo, double taxaPoupanca, int diaPoupanca) {
         super(numero, agencia, banco, saldo);
         this.taxaPoupanca = taxaPoupanca;
@@ -10,11 +9,13 @@ public class ContaPoupanca extends Conta{
     }
 
 
-  public double sacar(double valor){
-      System.out.println("Sacando: " + valor);        
+    public double sacar(double valor){
+      System.out.println("Sacando: " + valor);
         setSaldo(getSaldo() - valor);
       System.out.println("Valor restante: " + getSaldo());
+
       return valor;
+
         }
 
     @Override
@@ -26,7 +27,13 @@ public class ContaPoupanca extends Conta{
         }else{
             setSaldo(getSaldo()+valor);
             System.out.println("Valor depositado sem rendimento:" + getSaldo());
+
         }
+
         return valor;
     }
+    public double getTaxaPoupanca(){
+        return taxaPoupanca;
+    }
+
 }
