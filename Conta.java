@@ -5,10 +5,10 @@ abstract public class Conta {
     protected double saldo;
 
     public Conta(int numero, int agencia, String banco, double saldo){
-    this.numero = numero;
-    this.agencia = agencia;
-    this.banco = banco;
-    this.saldo = saldo;
+        this.numero = numero;
+        this.agencia = agencia;
+        this.banco = banco;
+         this.saldo = saldo;
     }
 
     public int getNumero() {return numero;}
@@ -20,7 +20,7 @@ abstract public class Conta {
     public   double getSaldo() {return saldo;}
     public void setSaldo(double valor) {this.saldo = valor;}
 
-  public abstract double sacar(double valor);
+    public abstract double sacar(double valor);
     public abstract double depositar(double valor);
 
     @Override
